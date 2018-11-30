@@ -413,82 +413,10 @@ $(".featured_item").hover(function(){
 
 
 /***** Featured Products *****/
-var prdNum = 0;
-$(".prd_nav > li").click(function(){
-	$(".prd_wrap").eq(prdNum).stop().animate();
-	prdNum = $(this).index();
-	$(".prd_nav > li").css({"color":"#666"});
-	$(".prd_nav div").css({"width":0});
-	$(this).css({"color":"#222"});
-	$(this).children("div").css({"width":"100%"});
-});
-$(".prd_nav > li").hover(function(){
-	if($(this).index() != prdNum) {
-		$(this).css({"color":"#222"});
-		$(this).children("div").stop().animate({"width":"100%"}, 100);
-	}
-},function(){
-	if($(this).index() != prdNum) {
-		$(this).css({"color":"#666"});
-		$(this).children("div").stop().animate({"width":0}, 100);
-	}
-});
-$(".prd_nav > li").eq(0).trigger("click");
 
 // for (var i=0; i<7; i++){
 // 	$(".prd_wrap").append($(".prd").eq(0).clone());
 // }
-
-$(".prd").hover(function(){
-	$(this).children(".prd_hover").stop().fadeIn(300);
-	$(this).find(".prd_compare").find("div").stop().animate({"top":"-42px"},300);
-		 //console.log(document.querySelector(".prd_cont").scrollHeight);
-	 
-		 if ($(this).find(".prd_cont")[0].offsetHeight < $(this).find(".prd_cont")[0].scrollHeight){	
-			//your element have overflow
-			console.log("overflow");
-			$(this).find(".prd_cont").children("div").stop().animate({"bottom": "0"}, 200);
-			$(this).find(".prd_cont").children("div").click(function(){
-				$(this).parent().css("height","auto");
-				$(this).hide();
-			});
-		}
-	$(this).find(".prd_detail").children("ul").hover(function(){
-		$(this).children(":first-child").stop().animate({"margin-top":"-38px"},200);
-	}, function(){
-		$(this).children(":first-child").stop().animate({"margin-top":"0"},200);
-
-	});
-}, function(){
-	$(this).children(".prd_hover").stop().fadeOut(300);
-	$(this).find(".prd_compare").find("div").stop().animate({"top":"0"},300);});
-	if ($(this).find(".prd_cont")[0].offsetHeight < $(this).find(".prd_cont")[0].scrollHeight){	
-		//your element have overflow
-		console.log("overflow");
-		$(this).find(".prd_cont").children("div").stop().animate({"bottom": "-20px"}, 200);
-	}
-$(".prd_hover_img").hover(function(){
-	$(this).stop().animate({"opacity":1}, 200).css({"animation-name":"prdImg"});
-}, function(){
-	$(this).stop().animate({"opacity":0}, 200).css({"animation-name":"prdImgBack"});
-});
-
-	 //console.log(document.querySelector(".prd_cont").offsetHeight);
-	 $('[data-toggle="tooltip"]').tooltip(); 
-
-	//  $.ajax({
-	// 	 url: "../json/prds.json",
-	// 	 type: "post",
-	// 	 dataType: "json",
-	// 	 success: function(data){
-	// 		 //여기가 실행 구문
-	// 		 console.log(data);
-	// 	 },
-	// 	 error: function(xhr, status, error){
-	// 		 console.log(data);
-	// 	 }
-	//  });
-
 	
 // {"result":[{"title":"best", "data":[{},{}]},{...},{...}]} --> data 구조입니다.
 var prds = new Ajax("../json/prds.json");
@@ -552,6 +480,84 @@ function resultFn(data) {
 			html+= '</li>';
 		}
 		html+= '</ul>';
-		$(".prds").append(html);
+		$(".prd_out_wrap").append(html);
 	}
+	
+var prdNum = 0;
+$(".prd_nav > li").click(function(){
+	$(".prd_wrap").eq(prdNum).stop().animate({"top":"5rem", "opacity":0},500, function(){
+		$(this).css({"display":"none"});
+	});
+	prdNum = $(this).index();
+	$(".prd_wrap").eq(prdNum).css({"display":"block"}).stop().animate({"top":"0", "opacity":1},500);
+	$(".prd >li").css({"color":"#666"});
+	$(".prd_nav div").css({"width":0});
+	$(this).css({"color":"#222"});
+	$(this).children("div").css({"width":"100%"});
+});
+$(".prd_nav > li").hover(function(){
+	if($(this).index() != prdNum) {
+		$(this).css({"color":"#222"});
+		$(this).children("div").stop().animate({"width":"100%"}, 100);
+	}
+},function(){
+	if($(this).index() != prdNum) {
+		$(this).css({"color":"#666"});
+		$(this).children("div").stop().animate({"width":0}, 100);
+	}
+});
+$(".prd_nav > li").eq(0).trigger("click");
+
+$(".prd").hover(function(){
+	$(this).children(".prd_hover").stop().fadeIn(300);
+	$(this).find(".prd_compare").find("div").stop().animate({"top":"-42px"},300);
+		 //console.log(document.querySelector(".prd_cont").scrollHeight);
+	 
+		 if ($(this).find(".prd_cont")[0].offsetHeight < $(this).find(".prd_cont")[0].scrollHeight){	
+			//your element have overflow
+			console.log("overflow");
+			$(this).find(".prd_cont").children("div").stop().animate({"bottom": "0"}, 200);
+			$(this).find(".prd_cont").children("div").click(function(){
+				$(this).parent().css("height","auto");
+				$(this).hide();
+			});
+		}
+	$(this).find(".prd_detail").children("ul").hover(function(){
+		$(this).children(":first-child").stop().animate({"margin-top":"-38px"},200);
+	}, function(){
+		$(this).children(":first-child").stop().animate({"margin-top":"0"},200);
+
+	});
+}, function(){
+	$(this).children(".prd_hover").stop().fadeOut(300);
+	$(this).find(".prd_compare").find("div").stop().animate({"top":"0"},300);
+	if ($(this).find(".prd_cont")[0].offsetHeight < $(this).find(".prd_cont")[0].scrollHeight){	
+		//your element have overflow
+		console.log("overflow");
+		$(this).find(".prd_cont").children("div").stop().animate({"bottom": "-20px"}, 200);
+	}
+});
+$(".prd_hover_img").hover(function(){
+	$(this).stop().animate({"opacity":1}, 200).css({"animation-name":"prdImg"});
+}, function(){
+	$(this).stop().animate({"opacity":0}, 200).css({"animation-name":"prdImgBack"});
+});
+
+	 //console.log(document.querySelector(".prd_cont").offsetHeight);
+	 $('[data-toggle="tooltip"]').tooltip(); 
 }
+
+
+	//  $.ajax({
+	// 	 url: "../json/prds.json",
+	// 	 type: "post",
+	// 	 dataType: "json",
+	// 	 success: function(data){
+	// 		 //여기가 실행 구문
+	// 		 console.log(data);
+	// 	 },
+	// 	 error: function(xhr, status, error){
+	// 		 console.log(data);
+	// 	 }
+	//  });
+
