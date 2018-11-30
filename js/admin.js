@@ -1,13 +1,13 @@
-var config = {
-	apiKey: "AIzaSyAmJXF4xCHexyq0ofjmfBS1HCvnlbeOwJM",
-	authDomain: "booldook-mall.firebaseapp.com",
-	databaseURL: "https://booldook-mall.firebaseio.com",
-	projectId: "booldook-mall",
-	storageBucket: "booldook-mall.appspot.com",
-	messagingSenderId: "726805469501"
+  // Initialize Firebase
+  var config = {
+	apiKey: "AIzaSyDRFaTWVUxu6ZRavw0HYrDt3qyN-iIYYM0",
+	authDomain: "wowowo-mall.firebaseapp.com",
+	databaseURL: "https://wowowo-mall.firebaseio.com",
+	projectId: "wowowo-mall",
+	storageBucket: "wowowo-mall.appspot.com",
+	messagingSenderId: "550961208363"
 };
 firebase.initializeApp(config);
-
 var db = firebase.database();
 var ref;
 var key;
