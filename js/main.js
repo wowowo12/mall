@@ -1,3 +1,17 @@
+//자동높이 계산 함수
+function autoHeight(){
+    $(".hei_wrap").imagesLoaded().done(heiCalc);
+    $(window).resize(heiCalc);
+    function heiCalc(pa, me){
+        $(".hei_wrap").each(function(){
+            $(this).height($(this).find(".hei_elem").height());
+        });
+       
+    }
+}
+autoHeight();
+
+// 이미지로더
 $('body').imagesLoaded()
 	.done(function (instance) {
 		$(".loader").hide();
@@ -425,7 +439,7 @@ function resultFn(data) {
 	var html = '';
 	var li;
 	for(var i=0; i<data.result.length; i++){
-		html = '<ul class="prd_wrap clear">';
+		html = '<ul class="prd_wrap hei_elem clear">';
 		for(var j=0; j<data.result[i].data.length; j++) {
 			li = data.result[i].data[j];
 			html+= '<li class="prd">';
@@ -481,6 +495,7 @@ function resultFn(data) {
 		}
 		html+= '</ul>';
 		$(".prd_out_wrap").append(html);
+		autoHeight();
 	}
 	
 var prdNum = 0;
@@ -561,3 +576,9 @@ $(".prd_hover_img").hover(function(){
 	// 	 }
 	//  });
 
+// 하단배너
+
+$(window).resize(function(){
+	//반응형일 경우 resize에 대한 처리 필요
+	
+}).trigger("resize");

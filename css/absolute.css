@@ -1,0 +1,11 @@
+.wrap{width:100%; position:relative;}
+/* absolute의 높이값 해결 
+반응형이 아닐 경우에는 relative에 height를 고정 값으로 주어 문제를 해결
+ */
+.box{width:80%; left:10%; position:absolute;}
+.out1{border:2px solid red;}
+.out2{border:2px solid green;}
+.out3{border:2px solid blue;}
+.in1{max-width:500px;}
+.in2{font-size:100px;}
+.in3{max-width:500px;}
